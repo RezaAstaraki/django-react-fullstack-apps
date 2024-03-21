@@ -1,7 +1,14 @@
-import React from "react";
+// import React from "react";
 
-function authContext() {}
+// const SomeContext = createContext();
 
-AuthContext = React.createContext(null);
+// function authContext() {
+//   context = React.createContext();
+//   return (
+//     <div>
+//       <SomeContext.Provider >do</SomeContext.Provider>
+//     </div>
+//   );
+// }
 
-export default authContext;
+// export default authContext;

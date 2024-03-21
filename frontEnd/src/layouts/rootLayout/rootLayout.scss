@@ -1,0 +1,28 @@
+.root-layout {
+  .header {
+    display: flex;
+    align-items: center;
+    //   justify-content: center;
+    height: 50px;
+    gap: 1rem;
+    background-color: lightblue;
+    .nav-item {
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: rgb(72, 255, 0);
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: inset black 0 0 5px;
+      &:hover {
+        background-color: burlywood;
+        color: #fff;
+      }
+      &.active {
+        color: red;
+        background-color: darkcyan;
+      }
+    }
+  }
+}
