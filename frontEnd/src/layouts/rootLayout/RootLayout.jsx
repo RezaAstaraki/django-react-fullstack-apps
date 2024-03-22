@@ -1,11 +1,13 @@
 import "./rootLayout.scss";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 function RootLayout() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   return (
     <div className="root-layout">
       <header className="header">

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./login.scss";
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +6,15 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const { loginFunction, user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    await loginFunction(e);
+  //redirect to home if user exist
+  useEffect(() => {
     if (user) {
       navigate("/");
     }
+  }, [user]);
+
+  const handleSubmit = async (e) => {
+    await loginFunction(e);
   };
 
   return (
