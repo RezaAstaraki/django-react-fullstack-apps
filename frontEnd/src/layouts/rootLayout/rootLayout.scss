@@ -1,11 +1,12 @@
 .root-layout {
+  max-width: 1200px;
+  margin: 0 auto;
   .header {
+    width: 100%;
     display: flex;
-    align-items: center;
-    //   justify-content: center;
     height: 50px;
-    gap: 1rem;
     background-color: lightblue;
+    align-items: center;
     .nav-item {
       text-decoration: none;
       font-size: 1.3rem;
@@ -19,10 +20,33 @@
         background-color: burlywood;
         color: #fff;
       }
-      &.active {
-        color: red;
-        background-color: darkcyan;
+    }
+
+    .right-side-menu {
+      display: flex;
+      align-items: center;
+      // height: 0px;
+      gap: 1rem;
+    }
+
+    .left-side-menu {
+      align-items: center;
+      margin-left: auto;
+      margin-right: 30px;
+      display: flex;
+      gap: 1rem;
+
+      .logo-name {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: whitesmoke;
+        text-shadow: black 0 0 1px, black 0 0 2px, black 0 0 3px;
+        user-select: none;
       }
     }
+  }
+  .active {
+    color: red;
+    background-color: darkcyan;
   }
 }

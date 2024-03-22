@@ -12,6 +12,7 @@ import { Home } from "./pages/home/Home";
 
 import Login from "./pages/login/Login";
 import RootLayout from "./layouts/rootLayout/RootLayout";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +26,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthContextProvider>
+        <RouterProvider router={router} />
+      </AuthContextProvider>
     </>
   );
 }

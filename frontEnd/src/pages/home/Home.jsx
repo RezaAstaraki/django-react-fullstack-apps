@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./home.scss";
+import AuthContext from "../../context/AuthContext";
 
 export const Home = () => {
-  return <div className="home">Home</div>;
+  const { user } = useContext(AuthContext);
+  console.log("user", user);
+  return (
+    <div className="home">
+      Home
+      {user && (
+        <h3>
+          hello <strong>{user}</strong> welcome
+        </h3>
+      )}
+    </div>
+  );
 };
