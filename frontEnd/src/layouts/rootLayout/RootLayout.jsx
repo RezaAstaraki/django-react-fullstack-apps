@@ -22,7 +22,7 @@ function RootLayout() {
             </NavLink>
           ) : (
             <>
-              <span className="logo-name">user</span>
+              <span className="logo-name">{user}</span>
               <NavLink className="nav-item" to="/logout">
                 Logout
               </NavLink>

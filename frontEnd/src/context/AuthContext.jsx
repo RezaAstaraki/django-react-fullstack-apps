@@ -4,8 +4,11 @@ import { jwtDecode } from "jwt-decode";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+  const storedToken = JSON.parse(localStorage.getItem("token"));
+  // const navigate = useNavigate();
+
   const [user, setUser] = useState(null);
-  const [authenticate, setAuthenticate] = useState(null);
+  const [token, setToken] = useState(null);
 
   //define login function
   const login = async (e) => {
@@ -20,17 +23,14 @@ export const AuthContextProvider = ({ children }) => {
     });
     if (response.status === 200) {
       const data = await response.json();
-      // console.log("data", data.access);
-      console.log("user = ", jwtDecode(data.access).user);
-      console.log("type = ", typeof jwtDecode(data.access));
+      setToken(data);
+      console.log("jwtDecode(data.access).user", jwtDecode(data.access).user);
+      setUser(jwtDecode(data.access).user);
+      localStorage.setItem("token", JSON.stringify(data));
     } else {
       alert("something wrong");
     }
   };
-
-  // useEffect(() => {
-  //   login();
-  // });
 
   const contextData = {
     user: user,

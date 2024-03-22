@@ -1,12 +1,21 @@
 import React, { useContext } from "react";
 import "./login.scss";
 import AuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const { loginFunction } = useContext(AuthContext);
+  const { loginFunction, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    await loginFunction(e);
+    if (user) {
+      navigate("/");
+    }
+  };
+
   return (
     <div className="login">
-      <form action="" method="post" onSubmit={(e) => loginFunction(e)}>
+      <form action="" method="post" onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <legend>Login</legend>
           <input
