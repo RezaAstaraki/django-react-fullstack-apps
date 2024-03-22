@@ -6,15 +6,20 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   let firstRender = true;
   const storedToken = JSON.parse(localStorage.getItem("token"));
-
+  const storedUser = jwtDecode(storedToken.access).user;
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(storedToken);
+  //logs
+  useEffect(() => {
+    console.log("user", user);
+  });
 
   //define logout function
+
   const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem("token");
+    // setToken(null);
+    // setUser(null);
+    // localStorage.removeItem("token");
   };
 
   //define refresh token
@@ -34,7 +39,6 @@ export const AuthContextProvider = ({ children }) => {
     if (response.status === 200) {
       const data = await response.json();
       setToken(data);
-      setUser(jwtDecode(data.access).user);
       localStorage.setItem("token", JSON.stringify(data));
     } else {
       setToken(null);
@@ -56,7 +60,6 @@ export const AuthContextProvider = ({ children }) => {
 
   // checking for first render
   useEffect(() => {
-    console.log("firstRender", firstRender);
     if (firstRender) {
       refreshToken();
     }

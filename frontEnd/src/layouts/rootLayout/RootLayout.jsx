@@ -5,7 +5,7 @@ import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 function RootLayout() {
-  const { user } = useContext(AuthContext);
+  const { user, logoutFunction } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -25,7 +25,11 @@ function RootLayout() {
           ) : (
             <>
               <span className="logo-name">{user}</span>
-              <NavLink className="nav-item" to="/logout">
+              <NavLink
+                onClick={() => logoutFunction()}
+                className="nav-item"
+                to="/"
+              >
                 Logout
               </NavLink>
             </>
