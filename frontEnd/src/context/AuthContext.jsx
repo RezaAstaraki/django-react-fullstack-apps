@@ -26,6 +26,29 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
+  // const getNotes = () => {
+  //   if (!token) {
+  //     return;
+  //   }
+  //   const response = await fetch("http://127.0.0.1:8000/api/1/notes/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Authorization": `Bearer ${token.access}`
+  //     },
+  //     body: JSON.stringify({
+  //       // refresh: token.refresh,
+  //     }),
+  //   });
+  //   if (response.status === 200) {
+  //     const data = await response.json();
+  //     console.log('date', date)
+  //   } else {
+  //     alert('something wrong')
+  //   }
+  // };
+
+  // }
   //define refresh token
   const refreshToken = async () => {
     if (!token) {
