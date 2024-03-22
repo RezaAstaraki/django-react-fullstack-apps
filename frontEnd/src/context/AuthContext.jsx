@@ -6,19 +6,20 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authenticate, setAuthenticate] = useState(null);
 
+  //define login function
   const login = async (e) => {
     e.preventDefault();
     const response = await fetch("http://127.0.0.1:8000/api/token/", {
       method: "POST",
-      headers: { "Context-Type": "application/json" },
-      body: {
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
         username: e.target.username.value,
         password: e.target.password.value,
-      },
+      }),
     });
     if (response.status === 200) {
-      data = await response.json();
-      console.log("data", data);
+      const data = await response.json();
+      console.log("data", data.access);
     } else {
       alert("something wrong");
     }
