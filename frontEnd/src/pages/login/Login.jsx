@@ -12,7 +12,6 @@ function Login() {
       navigate("/");
     }
   }, [user]);
-
   const handleSubmit = async (e) => {
     await loginFunction(e);
   };

@@ -1,12 +1,11 @@
 import "./rootLayout.scss";
 import React, { useContext, useEffect } from "react";
 
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 function RootLayout() {
   const { user, logoutFunction } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   return (
     <div className="root-layout">

@@ -13,42 +13,39 @@ export const AuthContextProvider = ({ children }) => {
   const storedUser = storedToken ? jwtDecode(storedToken.access).user : null;
   const [user, setUser] = useState(storedUser);
   const [token, setToken] = useState(storedToken);
+  const [notes, setNotes] = useState(null);
   //logs
   useEffect(() => {
-    console.log("user", user);
-  });
+    getNotes();
+  }, [token, user]);
 
   //define logout function
-
   const logout = () => {
     setToken(null);
     setUser(null);
     localStorage.removeItem("token");
   };
 
-  // const getNotes = () => {
-  //   if (!token) {
-  //     return;
-  //   }
-  //   const response = await fetch("http://127.0.0.1:8000/api/1/notes/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Authorization": `Bearer ${token.access}`
-  //     },
-  //     body: JSON.stringify({
-  //       // refresh: token.refresh,
-  //     }),
-  //   });
-  //   if (response.status === 200) {
-  //     const data = await response.json();
-  //     console.log('date', date)
-  //   } else {
-  //     alert('something wrong')
-  //   }
-  // };
+  //define get notes
+  const getNotes = async () => {
+    if (!token) {
+      return;
+    }
+    const response = await fetch(`http://127.0.0.1:8000/api/${user}/notes/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token.access}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      setNotes(data);
+    } else {
+      alert("something wrong");
+    }
+  };
 
-  // }
   //define refresh token
   const refreshToken = async () => {
     if (!token) {
@@ -119,6 +116,7 @@ export const AuthContextProvider = ({ children }) => {
     authenticate: null,
     loginFunction: login,
     logoutFunction: logout,
+    notes: notes,
   };
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
